@@ -14,7 +14,7 @@ const axios = require('axios')
 const speed = require('performance-now')
 //---------------------------------------------------------------------------
 cmd({
-        pattern: "botai",
+        pattern: "chatdectakag",
         desc: "chat with an AI",
         category: "general",
         use: '<Hii,Secktor>',
@@ -55,16 +55,16 @@ cmd({
     },
     async(Void, citel) => {
         let { data } = await axios.get('https://api.github.com/repos/SamPandey001/Secktor-Md')
-        let cap = `*🐉 𝗗𝗥𝗔𝗚𝗢𝗡-𝗠𝗗 _𝗢𝗙𝗙𝗜𝗖𝗜𝗔𝗟 🌐*
+        let cap = `*🌐 𝗣𝗥𝗔𝗕𝗔𝗧𝗛-𝗠𝗗 _𝗢𝗙𝗙𝗜𝗖𝗜𝗔𝗟 ♦️*
 
-●. *Support group :* https://chat.whatsapp.com/DfXcDCINUpP4V15JmRv6Ir
+●. *Support group :* https://chat.whatsapp.com/KwFkWjI8qJ6B174esar8IM
 
-●. *Github:* 𝚁𝚎𝚕𝚎𝚊𝚜𝚎 𝚂𝚘𝚘𝚗.....
+●. *Github:* https://github.com/PrabathLK/PRABATH_MD
 
-●. *Developer:* https://github.com/Techwithamee1
+●. *Developer:* https://github.com/PrabathLK
 
-ᴅʀᴀɢᴏɴ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴀᴍᴇᴇꜱʜᴀ
-ᴠᴇʀᴛɪᴏɴ ⦁ 4.0
+ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴘʀᴀʙᴀᴛʜ
+ʀᴇʟᴇᴀsᴇᴅ ⦁ 𝟸𝟶𝟸𝟹/𝟶𝟷/𝟶𝟸
 `
         let buttonMessaged = {
             image: { url: await botpic() },
@@ -134,109 +134,45 @@ cmd({
 
                 image: {
 
-                    url: https://i.ibb.co/b6Q5Hpy/IMG-20230502-WA0119.jpg,
+                    url: await botpic(),
 
                 },
 
                 caption: `
-*_🐉 Dragon MD V4 Logo Pack 🪄_*
-
-*🎭 TOTAL LOGOES : 30*
-
-
-1. *CANDY STYLE*
-*example :* _.candy mr ameesha_
-
-2. *CHRISTMAS STYLE*
-*example :* _.christmas mr ameesha_
-
-3. *DEEPSEA STYLE*
-*example :* _.deepsea mr ameesha_
-
-4. *SCIFI STYLE*
-*example :* _.scifi mr ameesha_
-
-5. *RAINBOW STYLE*
-*example :* _.rainbow mr ameesha_
-
-6. *PENCIL STYLE*
-*example :* _.pencil mr ameesha_
-
-7. *DISCOVERY STYLE*
-*example :* _.discovery mr ameesha_
-
-8. *TRANSFORMER STYLE*
-*example :* _.transformer mr ameesha_
-
-9. *THUNDER  STYLE*
-*example :* _.thunder mr ameesha_
-
-10. *MAGMA STYLE*
-*example :* _.magma mr ameesha_
-
-11. *GLITCH STYLE*
-*example :* _.glitch mr ameesha_
-
-12. *UNDERWATER STYLE*
-*example :* _.underwater mr ameesha_
-
-13. *CLOUD STYLE*
-*example :* _.cloud mr ameesha_
-
-14. *TOXIC STYLE*
-*example :* _.toxic mr ameesha_
-
-15. *JOKER STYLE*
-*example :* _.joker mr ameesha_
-
-16. *BLACKPINK STYLE*
-*example :* _.blackpink mr ameesha_
-
-17. *SAND STYLE*
-*example :* _.sand mr ameesha_
-
-18. *GLUE STYLE*
-*example :* _.glue mr ameesha_
-
-19. *1917 STYLE*
-*example :* _.1917 mr ameesha_
-
-20. *LEAVES STYLE*
-*example :* _.leaves mr ameesha_
-
-21. *LUXURY STYLE*
-*example :* _.luxury mr ameesha_
-
-22. *HARRY POTTER STYLE*
-*example :* _.harrypotter mr ameesha_
-
-23. *STEEL STYLE*
-*example :* _.steel mr ameesha_
-
-24. *WHITE BEAR STYLE*
-*example :* _.whitebear mr ameesha_
-
-25. *METALLIC STYLE*
-*example :* _.metallic mr ameesha_
-
-26. *HORROR STYLE*
-*example :* _.horror mr ameesha_
-
-27. *NEON STYLE*
-*example :* _.neon mr ameesha_
-
-28. *ANCIENT STYLE*
-*example :* _.ancient mr ameesha_
-
-29. *FABRIC STYLE*
-*example :* _.fabric mr ameesha_
-
-30. *BURN ROCK STYLE*
-*example :* _.newtext mr ameesha_
+.logo1 text
+.logo2 text
+.logo3 text
+.logo4 text
+.logo5 text
+.logo6 text
+.logo7 text
+.logo8 text
+.logo9 text
+.logo10 text
+.logo11 text
+.logo12 text
+.logo13 text
+.logo14 text
+.logo15 text
+.logo16 text
+.logo17 text
+.logo18 text
+.logo19 text
+.logo20 text
+.logo21 text
+.logo22 text
+.logo23 text
+.logo24 text
+.logo25 text
+.logo26 text
+.logo27 text
+.logo28 text
+.logo29 text
+.logo30 text
 
 
-ᴅʀᴀɢᴏɴ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴀᴍᴇᴇꜱʜᴀ
-ᴠᴇʀᴛɪᴏɴ ⦁ 4.0
+ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴘʀᴀʙᴀᴛʜ
+ʀᴇʟᴇᴀsᴇᴅ ⦁ 𝟸𝟶𝟸𝟹/𝟶𝟷/𝟶𝟸
 `,
 
                 footer: tlang().footer,
@@ -426,6 +362,8 @@ cmd({
 
                 footer: tlang().footer,
 
+                buttons: buttons,
+
                 headerType: 4,
 
             };
@@ -476,7 +414,7 @@ cmd({
                 caption: `
 
 ┌────────────────────────────
-│  👨‍💻 *Dragon-MD* 👨‍💻  *COMMANDS* 🎗️
+│  👨‍💻 *PRABATH-MD* 👨‍💻  *COMMANDS* 🎗️
 └────────────────────────────
 
 
@@ -619,8 +557,8 @@ cmd({
 ✅ *ACTIVE ADD AND LEFT MSJ -* .act events
 ❌ *DEACTIVE ADD AND LEFT MSJ -* .deact events
 
-ᴅʀᴀɢᴏɴ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴀᴍᴇᴇꜱʜᴀ
-ᴠᴇʀᴛɪᴏɴ ⦁ 4.0
+ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴘʀᴀʙᴀᴛʜ
+ʀᴇʟᴇᴀsᴇᴅ ⦁ 𝟸𝟶𝟸𝟹/𝟶𝟷/𝟶𝟸
 `,
 
 
@@ -761,6 +699,8 @@ cmd({
 
                 footer: tlang().footer,
 
+                buttons: buttons,
+
                 headerType: 4,
 
             };
@@ -868,6 +808,8 @@ cmd({
 
                 footer: tlang().footer,
 
+                buttons: buttons,
+
                 headerType: 4,
 
             };
@@ -959,6 +901,8 @@ cmd({
 
                 footer: tlang().footer,
 
+                buttons: buttons,
+
                 headerType: 4,
 
             };
@@ -1030,6 +974,8 @@ cmd({
 `,
 
                 footer: tlang().footer,
+
+                buttons: buttons,
 
                 headerType: 4,
 
