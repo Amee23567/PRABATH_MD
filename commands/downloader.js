@@ -185,6 +185,61 @@ cmd({
 
    //-------------------------------------------------------------------------
 cmd({
+            pattern: "yts",
+            alias: ["සොයන්න","yt"],
+            desc: "Gives descriptive info of query from youtube..",
+            category: "downloader",
+            filename: __filename,
+            use: '<yt search text>',
+        },
+        async(Void, citel, text) => {
+            let yts = require("secktor-pack");
+            citel.reply("🔎 *Searching on YouTube* 🌎");
+            if (!text) return citel.reply(`*Enter the search word* ❗`);
+            let search = await yts(text);
+            let textt = "*┌─[🐉DRAGON-MD-V4🐉]─❂*\n\n*┣━( _🎥 YT Searcher ‍🎞️_ )*\n\n*┃⿻ 🔍 ඔබ සෙවූ වචනය* *"+ text +".*\n\n*┃⿻ 📝 ප්‍රතිඵල ගණන* _"+ search.all.length +"_\n\n┗━━━━━━━━━━━❂\n\n";
+
+            let no = 1;
+
+            for (let i of search.all) {
+
+                textt += `┏━━[ 🌐 No : ${no++} ]━━━━━━◆\n┇\n┃⿻   ℹ️Title : ${i.title}\n┃⿻   ♫ Type : ${
+
+          i.type
+
+        }\n┃⿻   👀Views : ${i.views}\n┃⿻   🕑Duration : ${
+
+          i.timestamp
+
+        }\n┃⿻   ⬆️Upload At : ${i.ago}\n┃⿻   💬Author : ${i.author.name}\n┃⿻   🖇️Url : ${
+
+          i.url
+
+        }\n┇\n┗━━━━━━━━━━━◆\n\n`;
+
+            }
+
+            return Void.sendMessage(citel.chat, {
+
+                image: {
+
+                    url: search.all[0].thumbnail,
+
+                },
+
+                caption: textt,
+
+            }, {
+
+                quoted: citel,
+
+            });
+
+        }
+
+    )
+    //-------------------------------------------------------------------------
+cmd({
         pattern: "song",
         alias: ["ytmp3"], 
         desc: "Downloads audio by yt link.",
