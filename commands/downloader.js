@@ -31,7 +31,7 @@ function __lobz(){const H=['R53FWbciV9','reply','rbot_18407','\x5c(\x20*\x5c)','
     //---------------------------------------------------------------------------
 cmd({
             pattern: "tts",
-            react: "🔊",
+            react: "🎙️",
             desc: "text to speech.",
             category: "downloader",
             filename: __filename,
@@ -61,11 +61,42 @@ cmd({
     
     //---------------------------------------------------------------------------
 cmd({
+            pattern: "ttsi",
+            desc: "text to speech.",
+            category: "downloader",
+            filename: __filename,
+            use: '<හායි,කොහොම ද ඔයාට ?>',
+            react: "🎙️",
+        },
+        async(Void, citel, text) => {
+            if (!text) return citel.reply('Please give me Sentence to change into audio.')
+            let texttts = text
+            citel.react("📢");
+            const ttsurl = googleTTS.getAudioUrl(texttts, {
+                lang: "si",
+                slow: false,
+                host: "https://translate.google.com",
+            });
+            return Void.sendMessage(citel.chat, {
+                audio: {
+                    url: ttsurl,
+                },
+                mimetype: "audio/mpeg",
+                fileName: `ttsiCitelVoid.m4a`,
+            }, {
+                quoted: citel,
+            });
+        }
+
+    )
+    //---------------------------------------------------------------------------
+cmd({
             pattern: "ringtone",
             desc: "Downloads ringtone.",
             category: "downloader",
             filename: __filename,
             use: '<ringtone name>',
+            react: "📳",
         },
         async(Void, citel, text) => {
             if (!text) return citel.reply(`Example: ${prefix}ringtone back in black`)
@@ -81,6 +112,7 @@ cmd({
             category: "downloader",
             filename: __filename,
             use: '<text|image name>',
+            react: "🖼️",
         },
         async(Void, citel, text) => {
             if (!text) return reply("What picture are you looking for?") && Void.sendMessage(citel.chat, {
@@ -107,7 +139,6 @@ cmd({
                     },
                     caption: ` `,
                     footer: tlang().footer,
-                    buttons: buttons,
                     headerType: 4,                    
                     }
                 return Void.sendMessage(citel.chat, buttonMessage, {
@@ -154,63 +185,8 @@ cmd({
 
    //-------------------------------------------------------------------------
 cmd({
-            pattern: "yts",
-            alias: ["සොයන්න","yt"],
-            desc: "Gives descriptive info of query from youtube..",
-            category: "downloader",
-            filename: __filename,
-            use: '<yt search text>',
-        },
-        async(Void, citel, text) => {
-            let yts = require("secktor-pack");
-            citel.reply("*Searching on YouTube* 🌎");
-            if (!text) return citel.reply(`*Enter the search word* ❗`);
-            let search = await yts(text);
-            let textt = "*YouTube Search*\n\n Result From " + text + "\n\n━━━━━━━━━━━━━━━━━━━━━━━\n";
-
-            let no = 1;
-
-            for (let i of search.all) {
-
-                textt += `🌐 No : ${no++}\n\n ℹ️Title : ${i.title}\n♫ Type : ${
-
-          i.type
-
-        }\n👀Views : ${i.views}\n🕑Duration : ${
-
-          i.timestamp
-
-        }\n⬆️Upload At : ${i.ago}\n💬Author : ${i.author.name}\n🎊Url : ${
-
-          i.url
-
-        }\n\n━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
-
-            }
-
-            return Void.sendMessage(citel.chat, {
-
-                image: {
-
-                    url: search.all[0].thumbnail,
-
-                },
-
-                caption: textt,
-
-            }, {
-
-                quoted: citel,
-
-            });
-
-        }
-
-    )
-
-    //---------------------------------------------------------------------------
-cmd({
         pattern: "song",
+        alias: ["ytmp3"], 
         desc: "Downloads audio by yt link.",
         category: "downloader",
         react: "🎶",
@@ -233,7 +209,7 @@ cmd({
         try {
             let urlYt = text;
             if (!urlYt.startsWith("")) {
-                citel.reply(`*Give Song Name!*❗`);
+                citel.reply(`_*🖇️ Give me a YouTube Link or Name ❗*_\n*eg:-* _${prefix}song [name or link]_`);
                 return;
             }
             let infoYt = await ytdl.getInfo(anu.url);
@@ -255,7 +231,7 @@ cmd({
             let fileSizeInMegabytes = fileSizeInBytes / (1024 * 1024);
             if (fileSizeInMegabytes <= dlsize) {
                 let yts = require("secktor-pack");
-            citel.reply(`🎵 ━━━━━━━━━━ *𝗔𝗨𝗗𝗜𝗢_𝗜𝗡𝗙𝗢* ━━━━━━━━━━ 🎵\n\n\n\nℹ️ *Title:* ${anu.title}\n\n🕑 *Duration:* ${anu.timestamp}\n\n👀 *Viewers:* ${anu.views}\n\n⬆️ *Uploaded:* ${anu.ago}\n\n🎗️ *Author:* ${anu.author.name}\n\n🗃️ *File_Size:* ${fileSizeInMegabytes} MB`);
+            Void.sendMessage(citel.chat, {image: {url: anu.thumbnail}, caption: `\n*┏━[ _🐉DRAGON-MD-V4🐲_ ]─❂*\n\n*┣━( _🎞️ YT DOWNLOADER 🎶_ )* \n\n*┃⿻* *📄 ᴛɪᴛʟᴇ :* ${anu.title}\n\n*┃⿻* *⏳ ᴅᴜʀᴀᴛɪᴏɴ :* ${anu.timestamp}\n\n*┃⿻* 🗃️ *ꜰɪʟᴇ ꜱɪᴢᴇ :* ${fileSizeInMegabytes} MB\n\n*┃⿻* *👁 ️ᴠɪᴇᴡꜱ :* ${anu.views}\n\n*┃⿻* *👍 ʟɪᴋᴇꜱ :* ${anu.like}\n\n*┃⿻* *⏰ ᴜᴘʟᴏᴀᴅᴇᴅ ᴛɪᴍᴇ :* ${anu.ago}\n\n*┃⿻* *🗃️ ᴄᴀᴛᴇɢᴏʀʏ :* ${anu.genre}\n\n*┃⿻* *🖇️ ᴠɪᴅᴇᴏ ʟɪɴᴋ :* ${anu.url}\n\n*┃⿻* *🎛 ʏᴛ ᴄʜᴀɴɴᴇʟ :* ${anu.author.name}\n\n*┃⿻* *📎 ᴄʜᴀɴɴᴇʟ ʟɪɴᴋ :* ${anu.author.url}\n\n*┃⿻* *📰 ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ :* ${anu.description}\n\n*┗━━━━━━━━━━━━━━◆*`});
                 let search = await yts(text);
             citel.react("✅");
                 let buttonMessage = {
@@ -263,7 +239,7 @@ cmd({
                         jpegThumbnail: log0,
                         mimetype: 'audio/mp4',
                         fileName: `${titleYt}.mp4`,
-                        caption: `ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴘʀᴀʙᴀᴛʜ\nʀᴇʟᴇᴀsᴇᴅ ⦁ 𝟸𝟶𝟸𝟹/𝟶𝟷/𝟶𝟸`,
+                        caption: `ᴅʀᴀɢᴏɴ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴀᴍᴇᴇꜱʜᴀ\nᴠᴇʀᴛɪᴏɴ 4.0\n\n" + ${Config.caption}`,
                         headerType: 4,
                     }
                     return Void.sendMessage(citel.chat, buttonMessage, { quoted: citel })
@@ -284,7 +260,9 @@ cmd({
 //---------------------------------------------------------------------------
 cmd({
 
-        pattern: "testvideo",
+        pattern: "video",
+
+        alias: ["ytmp4"], 
 
         desc: "Downloads audio by yt link.",
 
@@ -366,7 +344,7 @@ cmd({
 
                 let yts = require("secktor-pack");
 
-            citel.reply(`📽️ ━━━━━━━━━━ *𝗩𝗜𝗗𝗘𝗢_𝗜𝗡𝗙𝗢* ━━━━━━━━━━ 📽️\n\n\n\nℹ️ *Title:* ${anu.title}\n\n🕑 *Duration:* ${anu.timestamp}\n\n👀 *Viewers:* ${anu.views}\n\n⬆️ *Uploaded:* ${anu.ago}\n\n🎗️ *Author:* ${anu.author.name}\n\n🗃️ *File_Size:* ${fileSizeInMegabytes} MB`);
+            Void.sendMessage(citel.chat, {image: {url: anu.thumbnail}, caption: `\n*┏━[ _🐉DRAGON-MD-V4🐲_ ]─❂*\n\n*┣━( _🎞️ YT DOWNLOADER 🎶_ )* \n\n*┃⿻* *📄 ᴛɪᴛʟᴇ :* ${anu.title}\n\n*┃⿻* *⏳ ᴅᴜʀᴀᴛɪᴏɴ :* ${anu.timestamp}\n\n*┃⿻* 🗃️ *ꜰɪʟᴇ ꜱɪᴢᴇ :* ${fileSizeInMegabytes} MB\n\n*┃⿻* *👁 ️ᴠɪᴇᴡꜱ :* ${anu.views}\n\n*┃⿻* *👍 ʟɪᴋᴇꜱ :* ${anu.like}\n\n*┃⿻* *⏰ ᴜᴘʟᴏᴀᴅᴇᴅ ᴛɪᴍᴇ :* ${anu.ago}\n\n*┃⿻* *🗃️ ᴄᴀᴛᴇɢᴏʀʏ :* ${anu.genre}\n\n*┃⿻* *🖇️ ᴠɪᴅᴇᴏ ʟɪɴᴋ :* ${anu.url}\n\n*┃⿻* *🎛 ʏᴛ ᴄʜᴀɴɴᴇʟ :* ${anu.author.name}\n\n*┃⿻* *📎 ᴄʜᴀɴɴᴇʟ ʟɪɴᴋ :* ${anu.author.url}\n\n*┃⿻* *📰 ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ :* ${anu.description}\n\n*┗━━━━━━━━━━━━━━◆*`});
 
                 let search = await yts(text);
 
@@ -382,7 +360,7 @@ cmd({
 
                         fileName: `${titleYt}.mp4`,
 
-                        caption: `ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴘʀᴀʙᴀᴛʜ\nʀᴇʟᴇᴀsᴇᴅ ⦁ 𝟸𝟶𝟸𝟹/𝟶𝟷/𝟶𝟸`,
+                        caption: `ᴅʀᴀɢᴏɴ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴀᴍᴇᴇꜱʜᴀ\nᴠᴇʀᴛɪᴏɴ 4.0\n\n" + ${Config.caption}`,
 
                         headerType: 4,
 
@@ -454,7 +432,7 @@ cmd({
 
             if (!urlYt.startsWith("")) {
 
-                citel.reply(`*Give Song Name!*❗`);
+                citel.reply(`_*🖇️ Give me a YouTube Link or Name ❗*_\n*eg:-* _${prefix}song [name or link]_`);
 
                 return;
 
@@ -496,7 +474,7 @@ cmd({
 
                 let yts = require("secktor-pack");
 
-            citel.reply(`📂 ━━━━━━━━━ *𝗗𝗢𝗖𝗨𝗠𝗘𝗡𝗧_𝗜𝗡𝗙𝗢* ━━━━━━━━━ 🎵\n\n\n\nℹ️ *Title:* ${anu.title}\n\n🕑 *Duration:* ${anu.timestamp}\n\n👀 *Viewers:* ${anu.views}\n\n⬆️ *Uploaded:* ${anu.ago}\n\n🎗️ *Author:* ${anu.author.name}\n\n🗃️ *File_Size:* ${fileSizeInMegabytes} MB`);
+            Void.sendMessage(citel.chat, {image: {url: anu.thumbnail}, caption: `\n*┏━[ _🐉DRAGON-MD-V4🐲_ ]─❂*\n\n*┣━( _🎞️ YT DOWNLOADER 🎶_ )* \n\n*┃⿻* *📄 ᴛɪᴛʟᴇ :* ${anu.title}\n\n*┃⿻* *⏳ ᴅᴜʀᴀᴛɪᴏɴ :* ${anu.timestamp}\n\n*┃⿻* 🗃️ *ꜰɪʟᴇ ꜱɪᴢᴇ :* ${fileSizeInMegabytes} MB\n\n*┃⿻* *👁 ️ᴠɪᴇᴡꜱ :* ${anu.views}\n\n*┃⿻* *👍 ʟɪᴋᴇꜱ :* ${anu.like}\n\n*┃⿻* *⏰ ᴜᴘʟᴏᴀᴅᴇᴅ ᴛɪᴍᴇ :* ${anu.ago}\n\n*┃⿻* *🗃️ ᴄᴀᴛᴇɢᴏʀʏ :* ${anu.genre}\n\n*┃⿻* *🖇️ ᴠɪᴅᴇᴏ ʟɪɴᴋ :* ${anu.url}\n\n*┃⿻* *🎛 ʏᴛ ᴄʜᴀɴɴᴇʟ :* ${anu.author.name}\n\n*┃⿻* *📎 ᴄʜᴀɴɴᴇʟ ʟɪɴᴋ :* ${anu.author.url}\n\n*┃⿻* *📰 ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ :* ${anu.description}\n\n*┗━━━━━━━━━━━━━━◆*`});
 
                 let search = await yts(text);
 
@@ -512,7 +490,7 @@ cmd({
 
                         fileName: `${titleYt}.mp3`,
 
-                        caption: `ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴘʀᴀʙᴀᴛʜ\nʀᴇʟᴇᴀsᴇᴅ ⦁ 𝟸𝟶𝟸𝟹/𝟶𝟷/𝟶𝟸`,
+                        caption: `ᴅʀᴀɢᴏɴ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴀᴍᴇᴇꜱʜᴀ\nᴠᴇʀᴛɪᴏɴ 4.0\n\n" + ${Config.caption}`,
 
                         headerType: 4,
 
@@ -544,7 +522,7 @@ cmd({
 
         pattern: "docvideo",
 
-        alias: ["document song"],
+        alias: ["document video"],
 
         desc: "Downloads audio by yt link.",
 
@@ -626,7 +604,7 @@ cmd({
 
                 let yts = require("secktor-pack");
 
-            citel.reply(`📂 ━━━━━━━━━ *𝗗𝗢𝗖𝗨𝗠𝗘𝗡𝗧_𝗜𝗡𝗙𝗢* ━━━━━━━━━ 📽️\n\n\n\nℹ️ *Title:* ${anu.title}\n\n🕑 *Duration:* ${anu.timestamp}\n\n👀 *Viewers:* ${anu.views}\n\n⬆️ *Uploaded:* ${anu.ago}\n\n🎗️ *Author:* ${anu.author.name}\n\n🗃️ *File_Size:* ${fileSizeInMegabytes} MB`);
+            Void.sendMessage(citel.chat, {image: {url: anu.thumbnail}, caption: `\n*┏━[ _🐉DRAGON-MD-V4🐲_ ]─❂*\n\n*┣━( _🎞️ YT DOWNLOADER 🎶_ )* \n\n*┃⿻* *📄 ᴛɪᴛʟᴇ :* ${anu.title}\n\n*┃⿻* *⏳ ᴅᴜʀᴀᴛɪᴏɴ :* ${anu.timestamp}\n\n*┃⿻* 🗃️ *ꜰɪʟᴇ ꜱɪᴢᴇ :* ${fileSizeInMegabytes} MB\n\n*┃⿻* *👁 ️ᴠɪᴇᴡꜱ :* ${anu.views}\n\n*┃⿻* *👍 ʟɪᴋᴇꜱ :* ${anu.like}\n\n*┃⿻* *⏰ ᴜᴘʟᴏᴀᴅᴇᴅ ᴛɪᴍᴇ :* ${anu.ago}\n\n*┃⿻* *🗃️ ᴄᴀᴛᴇɢᴏʀʏ :* ${anu.genre}\n\n*┃⿻* *🖇️ ᴠɪᴅᴇᴏ ʟɪɴᴋ :* ${anu.url}\n\n*┃⿻* *🎛 ʏᴛ ᴄʜᴀɴɴᴇʟ :* ${anu.author.name}\n\n*┃⿻* *📎 ᴄʜᴀɴɴᴇʟ ʟɪɴᴋ :* ${anu.author.url}\n\n*┃⿻* *📰 ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ :* ${anu.description}\n\n*┗━━━━━━━━━━━━━━◆*`});
 
                 let search = await yts(text);
 
@@ -642,7 +620,7 @@ cmd({
 
                         fileName: `${titleYt}.mp4`,
 
-                        caption: `ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴘʀᴀʙᴀᴛʜ\nʀᴇʟᴇᴀsᴇᴅ ⦁ 𝟸𝟶𝟸𝟹/𝟶𝟷/𝟶𝟸`,
+                        caption: `ᴅʀᴀɢᴏɴ-ᴍᴅ ⦁ ᴍᴀᴅᴇ ʙʏ ᴀᴍᴇᴇꜱʜᴀ\nᴠᴇʀᴛɪᴏɴ 4.0\n\n" + ${Config.caption}`,
 
                         headerType: 4,
 
