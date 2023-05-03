@@ -357,7 +357,7 @@ cmd({
 
             if (!urlYt.startsWith("")) {
 
-                citel.reply(`*Give Video Name!*❗`);
+                citel.reply(`_*🖇️ Give me a YouTube Link or Name ❗*_\n*eg:-* _${prefix}song [name or link]_`);
 
                 return;
 
@@ -407,7 +407,11 @@ cmd({
 
                 let buttonMessage = {
 
-                        video: fs.readFileSync(`./${randomName}`),
+                        document: {
+
+                    url: ${anu.url} ,
+
+                },
 
                         jpegThumbnail: log0,
 
@@ -442,7 +446,6 @@ cmd({
     )
 
   //---------------------------------------------------------------------------
-
 cmd({
 
         pattern: "docsong",
